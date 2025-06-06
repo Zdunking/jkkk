@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>《咏赵兄》·整活专用</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            color: #d14;
+            animation: shake 1.5s infinite;
+            height: 5vh;
+        }
+
+        #verse-container {
+            display: flex;
+            align-content: center;
+            justify-content: space-between; 
+            /* 两侧对齐 */
+            width: 100vw;
+            height: 90vh;
+        }
+
+        .verse1 {
+            font-size: 2em;
+            margin: 15px auto;
+            max-width: 700px;
+            line-height: 1.8;
+            background: #fff;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(255, 102, 102, 0.3);
+            animation: slideIn 1s ease-out both;
+            color: rgb(0, 190, 204);
+            margin-right: 20px;
+        }
+
+        .verse2{
+            font-size: 2em;
+            margin: 15px auto;
+            max-width: 700px;
+            line-height: 1.8;
+            background: #fff;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(255, 102, 102, 0.3);
+            animation: slideIn 1s ease-out both;
+            color: rgb(0, 190, 204);
+            margin-left: 20px;
+        }
+
+        .verse:nth-child(even) {
+            /* background: #ffeaea; */
+        }
+
+        @keyframes shake {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(1deg);
+            }
+
+            50% {
+                transform: rotate(-1deg);
+            }
+
+            75% {
+                transform: rotate(1deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer {
+            /* margin-top: 60px; */
+            font-size: 0.9em;
+            color: #777;
+            animation: scrollText 30s linear infinite;
+            white-space: nowrap;
+            overflow: hidden;
+            height: 5vh;
+        }
+
+        @keyframes scrollText {
+            0% {
+                transform: translateX(-30%);
+            }
+
+            100% {
+                transform: translateX(30%);
+            }
+        }
+
+        /* 模态弹窗的遮罩层 */
+        #modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #ffebf0; /* 粉色柔和背景 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        /* 弹窗内容区域 */
+        #modalContent {
+            background: black;
+            width: 100vw;
+            height: 100vh;
+            text-align: center;
+            align-content: center;
+            animation: pop 0.5s ease;
+            font-size: 30px;
+        }
+
+        #modalContent p{
+            color:#6B5B95;
+            font-weight: bold;
+            font-size: 50px;
+        }
+
+        /* 按钮样式 */
+        #startBtn {
+            background-color: #B7D7D8;
+            border-radius: 20px;
+            width: 10vw;
+            height: 10vh;
+            font-size: 30px;
+            color: #6B5B95;
+            transition: all 0.2s ease;
+        }
+
+        #startBtn:hover {
+            background-color: #ff92b4;
+            transform: scale(1.05);
+        }
+        
+        #mainContent {
+          display: none; /* 初始隐藏，等弹窗关闭后显示 */
+          background-repeat: no-repeat;   /* 不重复 */
+          background-size:auto;          /* 覆盖整个容器 */
+          background-position: center;     /* 居中显示 */
+          background-image: url('kneel_down.png');
+                    
+          width: 100vw;
+          height: 100vh;
+        }
+
+        #main{
+            display: flex;
+            justify-content: center;
+            align-items: space-between;
+            flex-direction: column;
+            height: 95vh;
+        }
+
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            pointer-events: none; 
+        }
+
+        #content-container{
+            display: flex;
+        }
+
+    </style>
+</head>
+
+<body>
+    <script src="./rain.js"></script>
+    <script type="text/javascript">
+        function playAudio() {
+            modal.style.display = "none"; // 隐藏弹窗
+            var mainContent = document.getElementById('mainContent');
+            mainContent.style.display = "block";
+            var audio = document.getElementById('player');
+            audio.play();
+        }
+    </script>
+
+    <div id="content-container">
+        <div id="mainContent">
+            <h1>🏀《咏赵兄》🧢</h1>
+            <div id="main">
+                <div id="verse-container">
+                    <div>
+                        <div class="verse1">家中财政妻掌管，<br>球场英姿肚先展。</div>
+                        <div class="verse1">三步上篮三不沾，<br>啤酒一瓶汗满脸。</div>
+                        <div class="verse1">人菜瘾大不服软，<br>防守全靠肚子弹。</div>
+                        <div class="verse1">输球借口找得欢：<br>“地滑鞋歪光太暗！”</div>
+                    </div>
+                    
+                    <audio id="player" src="./zxz.mp3"  autoplay="autoplay" loop preload="auto">
+                                </audio>
+                    <div>
+                        <div class="verse2">战袍紧绷似帐篷，<br>跑动如船浪里颠。</div>
+                        <div class="verse2">队友捂眼不忍看，<br>对手笑跪在底线。</div>
+                        <div class="verse2">球场称霸梦里算，<br>回家拖鞋跪得惯。</div>
+                        <div class="verse2">若问家庭啥地位？<br>—— 遥控器旁充电站！</div>
+                    </div>
+                </div>
+                <div class="footer">
+                    🗣️ 小赵语录：不是我菜，是场地配不上我 ⚡ | 防守靠肚，输出靠吼 | 这鞋今天不太对劲！
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div id="modal">
+        <div id="modalContent">
+            <canvas id="stars"></canvas>
+            <div id="modal-main">
+                <p>欢迎来到秘密花园</p>
+                <button id="startBtn" onclick="playAudio()">开始</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
